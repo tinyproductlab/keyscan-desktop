@@ -1,0 +1,42 @@
+Acordo do usuário e política de privacidade do KeyScan
+
+Versão 1.0 · Vigente desde 23 de julho de 2026
+Desenvolvedor: tulkun · Contato: keyscan.feedback@zohomail.com
+
+O KeyScan é uma ferramenta de segurança local que funciona totalmente offline. Ao escolher “Concordar e continuar”, você aceita este acordo.
+
+1. Finalidade e princípios
+Gerencia no aparelho senhas, OTP, cofre, anexos e backups. Não exige conta KeyScan, servidor de senhas do desenvolvedor, anúncios, análise comportamental ou venda de dados.
+
+2. Dados processados
+Conforme o uso, pode processar localmente contas, senhas, URLs, notas, segredos OTP, dados do cofre, PIN, chave de proteção, WebDAV, preenchimento, digitalizações, importações/exportações, histórico, lixeira e preferências.
+
+3. Armazenamento e criptografia
+Pode usar banco criptografado, AES-GCM, chaves derivadas do PIN, Android Keystore, biometria e bloqueio automático. Root, malware ou chaves expostas reduzem a proteção.
+
+4. PIN e chave de proteção
+O desenvolvedor não possui esses segredos e não pode recuperar chaves perdidas nem contornar a criptografia. Guarde chaves e backups separadamente.
+
+5. Offline, rede e WebDAV
+Os recursos principais funcionam offline. A rede serve ao WebDAV configurado pelo usuário, backups criptografados, sincronização e transferência LAN. Serviços externos aplicam suas próprias políticas.
+
+6. Câmera, arquivos e fotos
+Acesso apenas para QR/código/OCR e operações escolhidas de importação, restauração, anexo, exportação ou backup. O armazenamento inteiro não é examinado automaticamente.
+
+7. Notificações, biometria e preenchimento
+Notificações mostram tarefas. O Android mantém dados biométricos; o KeyScan recebe apenas o resultado. O preenchimento funciona após ativação e nunca envia formulários automaticamente.
+
+8. Área de transferência
+Android, teclados ou outros apps podem ler segredos copiados. Confira o app e domínio de destino.
+
+9. Backup, restauração e exportação
+A chave original pode ser necessária. Arquivos exportados publicamente devem ser protegidos e apagados pelo usuário. Desinstalar não remove cópias em nuvens externas.
+
+10. Lixeira e exclusão
+Exclusão permanente e esvaziar a lixeira são irreversíveis. Limpar dados, desinstalar ou redefinir o aparelho pode remover dados locais.
+
+11. Componentes e responsabilidade
+Pode usar Android, AndroidX, Google ML Kit, bancos criptografados e bibliotecas QR abertas. O usuário protege PIN, chaves, backups e redes.
+
+12. Limites, mudanças e contato
+Não se garante segurança absoluta ou operação perfeita em todo ambiente. Mudanças importantes terão versão e data. Contato: keyscan.feedback@zohomail.com. Não envie segredos nem backups completos.

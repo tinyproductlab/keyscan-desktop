@@ -1,0 +1,42 @@
+Acuerdo de usuario y política de privacidad de KeyScan
+
+Versión 1.0 · Vigente desde el 23 de julio de 2026
+Desarrollador: tulkun · Contacto: keyscan.feedback@zohomail.com
+
+KeyScan es una herramienta de seguridad local que puede funcionar totalmente sin conexión. Al pulsar «Aceptar y continuar» aceptas este acuerdo.
+
+1. Finalidad y principios
+Gestiona en el dispositivo contraseñas, OTP, caja fuerte, adjuntos y copias. No requiere cuenta KeyScan, servidor de contraseñas del desarrollador, publicidad, análisis de conducta ni venta de datos.
+
+2. Datos tratados
+Según las funciones usadas, puede tratar localmente cuentas, contraseñas, URL, notas, secretos OTP, datos del cofre, PIN, clave de protección, WebDAV, autocompletado, escaneos, importaciones/exportaciones, historial, papelera y preferencias.
+
+3. Almacenamiento y cifrado
+Puede usar base cifrada, AES-GCM, claves derivadas del PIN, Android Keystore, biometría y bloqueo automático. Root, malware o claves divulgadas reducen la protección.
+
+4. PIN y clave de protección
+El desarrollador no posee estos secretos y no puede recuperar claves perdidas ni eludir el cifrado. Guarda claves y copias por separado.
+
+5. Uso sin conexión, red y WebDAV
+Las funciones principales trabajan sin red. La red se usa para WebDAV configurado por el usuario, copias cifradas, sincronización y transferencia LAN. Los servicios externos aplican sus propias políticas.
+
+6. Cámara, archivos y fotos
+Solo se accede para QR/códigos/OCR y operaciones elegidas de importación, restauración, adjuntos, exportación o copia. No se examina todo el almacenamiento automáticamente.
+
+7. Notificaciones, biometría y autocompletado
+Las notificaciones muestran tareas. Android conserva los datos biométricos; KeyScan recibe solo el resultado. Autocompletar funciona tras activarlo y nunca envía formularios automáticamente.
+
+8. Portapapeles
+Android, teclados u otras aplicaciones pueden leer secretos copiados. Comprueba la aplicación y el dominio de destino.
+
+9. Copia, restauración y exportación
+Puede requerirse la clave original. El usuario debe proteger y borrar los archivos exportados a espacios públicos. Desinstalar no elimina copias en nubes externas.
+
+10. Papelera y eliminación
+El borrado permanente y vaciar la papelera son irreversibles. Borrar datos, desinstalar o restablecer el dispositivo puede eliminar datos locales.
+
+11. Componentes y responsabilidad
+Puede usar Android, AndroidX, Google ML Kit, bases cifradas y bibliotecas QR abiertas. El usuario protege PIN, claves, copias y redes.
+
+12. Límites, cambios y contacto
+No se garantiza seguridad absoluta ni funcionamiento perfecto en todos los entornos. Los cambios importantes tendrán versión y fecha. Contacto: keyscan.feedback@zohomail.com. No envíes secretos ni copias completas.

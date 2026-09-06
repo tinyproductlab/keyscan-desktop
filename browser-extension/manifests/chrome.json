@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_appName__",
+  "version": "0.1.64",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyxyM68yt6BNKemkNIczex4as6d1DWlOIdDnNEJofxhKrbJkAqaq8HdfrLztEldOhnKkO00GYPlzMhfD7pyW/GNjJ23ZvQmphk40UaUHx47ED4nsmk8Apl+gsYkSoDKKTVUN5fqTVWEfMYiBM8driD8U6qYG1EQzbPNFE+QNY9NwDJL4GLrXOf6nndTjv2eayBp08zJkfjukQ/yVUSBgOgOocCLeoekCfZJpHQw4Q/iWUDCsf7PqPjsZj3sCHiai3vYEstaBvwSaoNySMEJyUVfY85DPSu0rV9uLgWKe4XgXl+UCAmcVxAh3u1xVr/kZ/3Dtv9LSm+1yrifF3zsjhaQIDAQAB",
+  "description": "__MSG_appDescription__",
+  "permissions": ["activeTab", "storage", "nativeMessaging", "scripting", "tabs"],
+  "host_permissions": ["https://*/*", "http://*/*"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_popup": "popup.html", "default_title": "KeyScan" },
+  "content_scripts": [{ "matches": ["https://*/*", "http://*/*"], "js": ["content.js"], "run_at": "document_idle" }],
+  "default_locale": "en"
+}

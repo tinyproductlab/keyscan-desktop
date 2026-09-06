@@ -1,0 +1,27 @@
+# Gradle / JVM
+build/
+.gradle/
+*.class
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+desktop/**/cp.txt
+
+# Node / browser extension
+node_modules/
+dist/
+package-lock.json
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
+._*
+Thumbs.db
+
+# Build outputs
+*.msi
+*.exe
+!desktop/windows-hello-helper/**/*.cs
+*.dmg
+*.zip
+*.xpi

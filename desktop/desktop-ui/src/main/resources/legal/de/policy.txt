@@ -1,0 +1,42 @@
+KeyScan-Nutzungsvereinbarung und Datenschutzrichtlinie
+
+Version 1.0 · Gültig ab 23. Juli 2026
+Entwickler: tulkun · Kontakt: keyscan.feedback@zohomail.com
+
+KeyScan ist ein lokal ausgerichtetes Sicherheitswerkzeug, das vollständig offline funktioniert. Mit „Zustimmen und fortfahren“ akzeptieren Sie diese Vereinbarung.
+
+1. Zweck und Grundsätze
+KeyScan verwaltet Passwörter, OTP, Tresordaten, Anhänge und Sicherungen auf Ihrem Gerät. Kein KeyScan-Konto, kein Entwickler-Passwortserver, keine Werbung, Verhaltensanalyse oder Datenverkäufe.
+
+2. Verarbeitete Daten
+Je nach Nutzung können Konten, Passwörter, URLs, Notizen, OTP-Geheimnisse, Tresordaten, PIN, Schutzschlüssel, WebDAV-Einstellungen, Autofill-Daten, Scanergebnisse, Importe/Exporte, Verlauf, Papierkorb und Einstellungen lokal verarbeitet werden.
+
+3. Speicherung und Schutz
+Verschlüsselte Datenbanken, AES-GCM, PIN-abgeleitete Schlüssel, Android Keystore, Biometrie und automatische Sperre können verwendet werden. Root, Schadsoftware oder offengelegte Schlüssel verringern den Schutz.
+
+4. PIN und Schutzschlüssel
+Der Entwickler besitzt diese Geheimnisse nicht und kann verlorene Schlüssel nicht wiederherstellen oder Verschlüsselung umgehen. Schlüssel und Sicherungen getrennt aufbewahren.
+
+5. Offline, Netzwerk und WebDAV
+Kernfunktionen arbeiten offline. Netzwerkzugriff dient dem vom Nutzer konfigurierten WebDAV, verschlüsselten Sicherungen, Synchronisierung und LAN-Übertragung. Für Drittanbieter gelten deren Bedingungen.
+
+6. Kamera, Dateien und Fotos
+Zugriff erfolgt nur für QR/Barcode/OCR sowie vom Nutzer gewählte Import-, Wiederherstellungs-, Anhang-, Export- und Sicherungsvorgänge. Der gesamte Speicher wird nicht automatisch durchsucht.
+
+7. Benachrichtigungen, Biometrie und Autofill
+Benachrichtigungen zeigen Vorgänge. Biometriedaten verbleiben bei Android; KeyScan erhält nur das Ergebnis. Autofill arbeitet nur nach Aktivierung und sendet Formulare nicht automatisch ab.
+
+8. Zwischenablage
+Kopierte Geheimnisse können von Android, Tastaturen oder anderen Apps gelesen werden. Ziel-App und Domain vor dem Einfügen prüfen.
+
+9. Sicherung, Wiederherstellung und Export
+Zur Wiederherstellung kann der ursprüngliche Schlüssel nötig sein. Öffentliche Exportdateien müssen vom Nutzer geschützt und gelöscht werden. Deinstallation löscht keine Cloud-Kopien bei Drittanbietern.
+
+10. Papierkorb und Löschung
+Endgültiges Löschen und Leeren des Papierkorbs sind unumkehrbar. App-Daten löschen, Deinstallation oder Geräte-Reset können lokale Daten entfernen.
+
+11. Drittkomponenten und Verantwortung
+Android, AndroidX, Google ML Kit, verschlüsselte Datenbanken und Open-Source-QR-Bibliotheken können eingesetzt werden. Nutzer schützen PIN, Schlüssel, Sicherungen und Netzwerke.
+
+12. Grenzen, Aktualisierung und Kontakt
+Absolute Sicherheit oder fehlerfreier Betrieb in jeder Umgebung wird nicht garantiert. Wesentliche Änderungen tragen neue Version und Datum. Kontakt: keyscan.feedback@zohomail.com. Keine echten Geheimnisse oder Sicherungen senden.

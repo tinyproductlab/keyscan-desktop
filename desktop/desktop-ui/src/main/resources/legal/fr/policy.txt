@@ -1,0 +1,42 @@
+Conditions d’utilisation et politique de confidentialité de KeyScan
+
+Version 1.0 · En vigueur le 23 juillet 2026
+Développeur : tulkun · Contact : keyscan.feedback@zohomail.com
+
+KeyScan est un outil de sécurité local pouvant fonctionner entièrement hors ligne. En choisissant « Accepter et continuer », vous acceptez le présent accord.
+
+1. Objet et principes
+KeyScan gère sur l’appareil les mots de passe, OTP, données du coffre, pièces jointes et sauvegardes. Aucun compte KeyScan, serveur de mots de passe du développeur, publicité, analyse comportementale ou vente de données n’est requis.
+
+2. Données traitées
+Selon l’usage : comptes, mots de passe, URL, notes, secrets OTP, coffre, PIN, clé de protection, WebDAV, données de remplissage, scans, imports/exports, historique, corbeille et préférences peuvent être traités localement.
+
+3. Stockage et chiffrement
+Base chiffrée, AES-GCM, clés dérivées du PIN, Android Keystore, biométrie et verrouillage automatique peuvent être utilisés. Le root, les logiciels malveillants ou une clé divulguée réduisent la sécurité.
+
+4. PIN et clé de protection
+Le développeur ne possède pas ces secrets et ne peut récupérer une clé perdue ni contourner le chiffrement. Conservez clés et sauvegardes séparément.
+
+5. Hors ligne, réseau et WebDAV
+Les fonctions principales marchent hors ligne. Le réseau sert au WebDAV configuré par l’utilisateur, aux sauvegardes chiffrées, à la synchronisation et au transfert local. Les services tiers appliquent leurs propres règles.
+
+6. Caméra, fichiers et photos
+Accès uniquement pour QR/code-barres/OCR et opérations d’importation, restauration, pièce jointe, exportation ou sauvegarde choisies par l’utilisateur. Aucun balayage automatique de tout le stockage.
+
+7. Notifications, biométrie et remplissage
+Les notifications indiquent l’état des tâches. Android conserve les données biométriques ; KeyScan reçoit seulement le résultat. Le remplissage fonctionne après activation et n’envoie jamais automatiquement le formulaire.
+
+8. Presse-papiers
+Android, le clavier ou d’autres applications peuvent lire les secrets copiés. Vérifiez l’application et le domaine de destination.
+
+9. Sauvegarde, restauration et exportation
+La clé d’origine peut être requise. Les fichiers exportés publiquement doivent être protégés et supprimés par l’utilisateur. Désinstaller KeyScan ne supprime pas les copies cloud tierces.
+
+10. Corbeille et suppression
+La suppression définitive et le vidage de la corbeille sont irréversibles. Effacer les données, désinstaller ou réinitialiser l’appareil peut supprimer les données locales.
+
+11. Composants tiers et responsabilité
+Android, AndroidX, Google ML Kit, bases chiffrées et bibliothèques QR libres peuvent être utilisés. L’utilisateur protège PIN, clés, sauvegardes et réseaux.
+
+12. Limites, mises à jour et contact
+Aucune sécurité absolue ni fonctionnement parfait partout n’est garanti. Les changements importants auront une version et une date. Contact : keyscan.feedback@zohomail.com. N’envoyez aucun secret réel ni sauvegarde complète.

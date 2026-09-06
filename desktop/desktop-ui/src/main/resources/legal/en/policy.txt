@@ -1,0 +1,45 @@
+KeyScan User Agreement and Privacy Policy
+
+Version: 1.0
+Effective: July 23, 2026
+Developer: tulkun
+Developer page: https://github.com/avatartulkun
+Contact: keyscan.feedback@zohomail.com
+
+Welcome to KeyScan. KeyScan is a local-first security tool that supports fully offline use. Please read the provisions about data protection, permissions, backup, recovery and limitations. Selecting “Agree and continue” means that you accept this agreement.
+
+1. Purpose and principles
+KeyScan manages passwords, OTP tokens, Secure Vault records, attachments and backups on your device. It does not require a KeyScan account, depend on a developer-operated password server, sell user data, display advertising or use behavioral analytics.
+
+2. Data processed
+Depending on the features you use, KeyScan may locally process site and app names, accounts, passwords, URLs, notes, OTP secrets, Vault data and attachments, PIN, data-protection key, WebDAV settings, autofill matching data, scan results, imported/exported content, backup history, Trash and preferences.
+
+3. Local storage and encryption
+Data may be protected with an encrypted database, AES-GCM, a random database key, PIN-derived keys, Android Keystore, biometrics, automatic lock and secure-window controls. Rooted devices, malware or disclosed PINs and keys can reduce protection.
+
+4. PIN and data-protection key
+The PIN is used for normal unlocking and authentication. The data-protection key protects databases and backups. The developer does not possess these secrets and cannot recover a lost key or bypass encryption. Keep keys separate from backup files.
+
+5. Offline use, network and WebDAV
+Core features work without WebDAV or internet access. Network access is used only for user-configured WebDAV, encrypted backup transfer, synchronization, LAN transfer and user-requested network actions. A third-party WebDAV provider may process IP address, access time, file name and size under its own policy.
+
+6. Camera, files and photos
+Camera access supports QR, barcode, OTP QR and OCR scanning. Files and photos are accessed only for user-selected import, restore, attachment, export and backup operations. Selecting one file does not authorize scanning all storage.
+
+7. Notifications, vibration and biometrics
+Notifications and vibration may report backup, sync and security operations. Raw fingerprint and facial templates remain managed by Android and device hardware; KeyScan receives only success, failure or cancellation results and does not store or upload biometric templates.
+
+8. Autofill and clipboard
+Autofill works only after the user enables it in Android settings and never submits forms automatically. Clipboard content may be read by Android, keyboards or other apps before deletion, so verify the target app/domain and limit sensitive copying.
+
+9. Backup, restore and export
+Local and WebDAV backups can be encrypted, and restore may require the original protection key. Files exported to public storage are outside KeyScan’s private area and must be protected and deleted by the user. Uninstalling KeyScan does not automatically delete third-party cloud backups.
+
+10. Trash and deletion
+Deleted records may remain in Trash according to settings. Permanent deletion and emptying Trash cannot be undone. Uninstalling, clearing app data or resetting a device may remove local data.
+
+11. Third-party components and user responsibility
+KeyScan may use Android, AndroidX, Google ML Kit, encrypted database components and open-source QR libraries. Users are responsible for protecting PINs, keys and backups and for confirming that target apps, websites, files and networks are trustworthy.
+
+12. Limitations, updates and contact
+No software can guarantee absolute security or error-free operation on every device, ROM, network or third-party service. Material policy updates will carry a new version and date. Contact keyscan.feedback@zohomail.com, but never send real passwords, OTP secrets, protection keys or complete backups. If you disagree, choose “Decline and exit.”

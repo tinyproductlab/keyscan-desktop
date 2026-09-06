@@ -1,0 +1,42 @@
+KeyScan-gebruikersovereenkomst en privacybeleid
+
+Versie 1.0 · Geldig vanaf 23 juli 2026
+Ontwikkelaar: tulkun · Contact: keyscan.feedback@zohomail.com
+
+KeyScan is een lokaal beveiligingshulpmiddel dat volledig offline werkt. Door ‘Akkoord en doorgaan’ te kiezen accepteert u deze overeenkomst.
+
+1. Doel en beginselen
+KeyScan beheert wachtwoorden, OTP, kluisgegevens, bijlagen en back-ups op het apparaat. Geen KeyScan-account, ontwikkelaarsserver voor wachtwoorden, advertenties, gedragsanalyse of gegevensverkoop.
+
+2. Verwerkte gegevens
+Afhankelijk van gebruik kunnen accounts, wachtwoorden, URL’s, notities, OTP-geheimen, kluisgegevens, pincode, beveiligingssleutel, WebDAV, automatisch invullen, scans, import/export, geschiedenis, prullenbak en voorkeuren lokaal worden verwerkt.
+
+3. Opslag en versleuteling
+Versleutelde database, AES-GCM, van pincode afgeleide sleutels, Android Keystore, biometrie en automatische vergrendeling kunnen worden gebruikt. Root, malware of gelekte sleutels verminderen bescherming.
+
+4. Pincode en beveiligingssleutel
+De ontwikkelaar bezit deze geheimen niet en kan verloren sleutels niet herstellen of versleuteling omzeilen. Bewaar sleutels en back-ups apart.
+
+5. Offline, netwerk en WebDAV
+Kernfuncties werken offline. Netwerk wordt gebruikt voor door de gebruiker ingestelde WebDAV, versleutelde back-ups, synchronisatie en LAN-overdracht. Externe diensten hebben eigen beleid.
+
+6. Camera, bestanden en foto’s
+Alleen voor QR/barcode/OCR en gekozen import-, herstel-, bijlage-, export- of back-uptaken. De volledige opslag wordt niet automatisch gescand.
+
+7. Meldingen, biometrie en automatisch invullen
+Meldingen tonen taken. Android bewaart biometrische gegevens; KeyScan ontvangt alleen het resultaat. Automatisch invullen werkt na activering en verzendt formulieren nooit automatisch.
+
+8. Klembord
+Android, toetsenborden of andere apps kunnen gekopieerde geheimen lezen. Controleer doel-app en domein.
+
+9. Back-up, herstel en export
+De oorspronkelijke sleutel kan vereist zijn. Publiek geëxporteerde bestanden moeten door de gebruiker worden beschermd en verwijderd. Verwijderen van de app wist externe cloudkopieën niet.
+
+10. Prullenbak en verwijderen
+Definitief verwijderen en legen zijn onomkeerbaar. App-gegevens wissen, verwijderen of apparaatreset kan lokale gegevens verwijderen.
+
+11. Componenten en verantwoordelijkheid
+Android, AndroidX, Google ML Kit, versleutelde databases en open QR-bibliotheken kunnen worden gebruikt. De gebruiker beschermt pincode, sleutels, back-ups en netwerken.
+
+12. Grenzen, wijzigingen en contact
+Absolute veiligheid of perfecte werking overal wordt niet gegarandeerd. Belangrijke wijzigingen krijgen versie en datum. Contact: keyscan.feedback@zohomail.com. Stuur geen geheimen of volledige back-ups.
