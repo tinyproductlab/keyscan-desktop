@@ -3,7 +3,7 @@ build/
 .gradle/
 *.class
 *.jar
-!gradle/wrapper/gradle-wrapper.jar
+!**/gradle/wrapper/gradle-wrapper.jar
 desktop/**/cp.txt
 
 # Node / browser extension
@@ -21,7 +21,7 @@ Thumbs.db
 # Build outputs
 *.msi
 *.exe
-!desktop/windows-hello-helper/**/*.cs
+!**/windows-hello-helper/**/*.cs
 *.dmg
 *.zip
 *.xpi
