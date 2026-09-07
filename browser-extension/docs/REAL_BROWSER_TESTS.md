@@ -1,22 +1,41 @@
 # Real browser validation
 
-Validated on Windows on 2026-07-30 using isolated, disposable browser profiles. The smoke test
+Validated on Windows on 2026-09-07 using isolated, disposable browser profiles. The smoke test
 does not read or modify the user's normal browser profile and removes its temporary profile after
 the browser process exits.
 
 ## Results
 
-- Microsoft Edge 150.0.4078.105 loaded `dist/edge` successfully.
-  Development extension ID: `gjkkjedmgnliacnnoecijlmfidkbkfnb`.
-- Brave 150.1.92.144 loaded `dist/brave` successfully.
-  Development extension ID: `mjhdlmdmapjelnlcdhnhnkjeglpigpon`.
-- Google Chrome 150.0.7871.187 ignores command-line unpacked extension loading in the official
+- Microsoft Edge 152.0.4191.66 loaded `dist/edge` successfully.
+  Development extension ID: `ccehabgiddlgfkhgkmpdehddiekngjel`.
+- **Native-messaging is no longer pending.** With the host installed for that development ID, Edge
+  loaded the extension, its background script called `register`, and the desktop bridge received
+  the request with the right browser, extension ID and version. Approving it issued a pairing
+  token, and the desktop recorded the pairing in `%APPDATA%\KeyScan\browser-plugins.properties`
+  with the token held in the DPAPI secret store rather than in that file.
+- Driving `KeyScanNativeHost.exe` directly over stdio framing confirmed the fail-closed paths:
+  an unapproved `register` returns `PAIRING_DENIED` after the 60-second approval timeout, and a
+  `status` call without a token returns `PAIRING_REQUIRED`.
+- Google Chrome 152.0.7977.76 ignores command-line unpacked extension loading in the official
   branded build. Chrome still requires a manual Developer mode load or Chrome for Testing; this
   is not recorded as a passed Chrome runtime test.
-- Firefox 153.0.1 is installed. Mozilla `web-ext lint` reports 0 errors, 0 notices, and 0 warnings
-  for `dist/firefox`. The locally packaged XPI is unsigned and Firefox Release will reject it;
-  temporary runtime loading uses `about:debugging` and production installation requires Mozilla
-  signing. Native-host messaging remains pending.
+- Brave 152.1.94.121 and Firefox 153.0.4 are installed. The locally packaged XPI is unsigned and
+  Firefox Release will reject it; temporary runtime loading uses `about:debugging` and production
+  installation requires Mozilla signing.
+
+Development IDs are path-derived and are not release store IDs. They must not be copied into the
+production native-host allow-list.
+
+## Reproduce the native-messaging round trip
+
+1. `./gradlew :native-host:packageWindowsAppImage` in `desktop/`.
+2. `scripts/Test-ChromiumLoad.ps1 -Target edge -BrowserExecutable <msedge.exe>` to read the
+   development extension ID.
+3. `packaging/windows/native-messaging/Install-KeyScanNativeHost.ps1` with that ID.
+4. Start KeyScan desktop, then launch Edge with `--load-extension=dist\edge` and approve the
+   pairing prompt.
+5. Uninstall afterwards with `Uninstall-KeyScanNativeHost.ps1`; the development ID must not be
+   left in the allow-list.
 
 ## Firefox temporary validation
 

@@ -25,19 +25,24 @@ tasks.register<Exec>("packageWindowsAppImage") {
     group = "distribution"
     description = "Builds the Windows native-messaging host app image with jpackage."
     dependsOn("installDist", cleanWindowsAppImage)
-    onlyIf { System.getProperty("os.name").startsWith("Windows", ignoreCase = true) }
-    doFirst {
-        val javaHome = javaToolchains.launcherFor { languageVersion.set(JavaLanguageVersion.of(17)) }.get().metadata.installationPath.asFile
-        executable(javaHome.resolve("bin/jpackage.exe"))
-        args(
-            "--type", "app-image",
-            "--name", "KeyScanNativeHost",
-            "--dest", layout.buildDirectory.dir("windows-app-image").get().asFile.absolutePath,
-            "--input", layout.buildDirectory.dir("install/native-host/lib").get().asFile.absolutePath,
-            "--main-jar", "native-host-${project.version}.jar",
-            "--main-class", "com.keyscan.nativehost.MainKt",
-            "--vendor", "KeyScan",
-            "--app-version", project.version.toString(),
-        )
-    }
+    // Everything is read into locals here, at configuration time. A lambda that reads a build-script
+    // property instead captures the script object, which the configuration cache cannot serialise.
+    val windowsBuild = System.getProperty("os.name").startsWith("Windows", ignoreCase = true)
+    val jpackage = javaToolchains.launcherFor { languageVersion.set(JavaLanguageVersion.of(17)) }
+        .get().metadata.installationPath.file("bin/jpackage.exe").asFile.absolutePath
+    val destination = layout.buildDirectory.dir("windows-app-image").get().asFile.absolutePath
+    val input = layout.buildDirectory.dir("install/native-host/lib").get().asFile.absolutePath
+    val hostVersion = project.version.toString()
+    onlyIf { windowsBuild }
+    executable = jpackage
+    args(
+        "--type", "app-image",
+        "--name", "KeyScanNativeHost",
+        "--dest", destination,
+        "--input", input,
+        "--main-jar", "native-host-$hostVersion.jar",
+        "--main-class", "com.keyscan.nativehost.MainKt",
+        "--vendor", "KeyScan",
+        "--app-version", hostVersion,
+    )
 }
