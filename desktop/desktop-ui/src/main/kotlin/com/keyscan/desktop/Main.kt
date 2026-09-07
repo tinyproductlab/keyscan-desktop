@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.input.key.onPreviewKeyEvent
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
@@ -453,15 +454,13 @@ private fun Brand(modifier: Modifier = Modifier) {
 @Composable
 private fun FirstRunSetup(onComplete: (String, String) -> Unit) {
     var pin by remember { mutableStateOf("") }
-    var pinAgain by remember { mutableStateOf("") }
     var key by remember { mutableStateOf("") }
-    var keyAgain by remember { mutableStateOf("") }
     var keyLength by remember { mutableStateOf(16) }
     var importedKey by remember { mutableStateOf(false) }
     var keyPreserved by remember { mutableStateOf(false) }
     val language = LocalAppLanguage.current; fun t(name: String, vararg args: Any) = AndroidStringCatalog.text(language, name, *args)
     val compactKey = key.replace("-", "")
-    val valid = pin.matches(Regex("\\d{4,6}")) && pin == pinAgain && compactKey.matches(Regex("[A-Z0-9]{8,32}")) && key == keyAgain && (importedKey || keyPreserved)
+    val valid = pin.matches(Regex("\\d{4,6}")) && compactKey.matches(Regex("[A-Z0-9]{8,32}")) && (importedKey || keyPreserved)
     Row(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
         Box(Modifier.weight(.42f).fillMaxHeight().background(Brush.verticalGradient(listOf(MaterialTheme.colorScheme.secondaryContainer, MaterialTheme.colorScheme.primaryContainer))).padding(56.dp)) {
             Column(Modifier.align(Alignment.CenterStart), verticalArrangement = Arrangement.spacedBy(22.dp)) {
@@ -475,19 +474,16 @@ private fun FirstRunSetup(onComplete: (String, String) -> Unit) {
                 Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(34.dp), verticalArrangement = Arrangement.spacedBy(15.dp)) {
                     Text(m("setup_heading"), fontSize = 25.sp, fontWeight = FontWeight.Bold)
                     Text(m("custody"), color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    SecretField(m("pin_new"), pin) { pin = it }
-                    SecretField(m("pin_again"), pinAgain) { pinAgain = it }
+                    SecretField(m("pin_new"), pin, revealable = true) { pin = it }
                     Text(t("vault_setup_length_current", keyLength), color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Medium)
                     Slider(value = keyLength.toFloat(), onValueChange = { keyLength = it.toInt() }, valueRange = 8f..32f, steps = 23, enabled = !importedKey)
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        OutlinedButton(onClick = { val generated = generateDesktopDataKey(keyLength); key = generated; keyAgain = generated; importedKey = false; keyPreserved = false }) { Text(t("action_generate")) }
-                        OutlinedButton(onClick = { chooseFile(FileDialog.LOAD, t("data_key_import_downloaded"))?.let { path -> parseDesktopDataKey(runCatching { Files.readString(path) }.getOrDefault(""))?.let { imported -> key = imported; keyAgain = imported; importedKey = true; keyPreserved = false } } }) { Text(t("data_key_import_downloaded")) }
+                        OutlinedButton(onClick = { val generated = generateDesktopDataKey(keyLength); key = generated; importedKey = false; keyPreserved = false }) { Text(t("action_generate")) }
+                        OutlinedButton(onClick = { chooseFile(FileDialog.LOAD, t("data_key_import_downloaded"))?.let { path -> parseDesktopDataKey(runCatching { Files.readString(path) }.getOrDefault(""))?.let { imported -> key = imported; importedKey = true; keyPreserved = false } } }) { Text(t("data_key_import_downloaded")) }
                     }
-                    SecretField(m("key_new"), key) { key = it.trim().uppercase(); importedKey = false; keyPreserved = false }
-                    SecretField(m("key_again"), keyAgain) { keyAgain = it.trim().uppercase() }
+                    SecretField(m("key_new"), key, revealable = true) { key = it.trim().uppercase(); importedKey = false; keyPreserved = false }
                     if (!importedKey) Row(verticalAlignment = Alignment.CenterVertically) { Checkbox(keyPreserved, { keyPreserved = it }); Text(t("vault_setup_key_preserved")) }
-                    if ((pinAgain.isNotEmpty() && pin != pinAgain) || (keyAgain.isNotEmpty() && key != keyAgain)) Text(m("mismatch"), color = MaterialTheme.colorScheme.error)
-                    Button(onClick = { onComplete(pin, key); pin = ""; pinAgain = ""; key = ""; keyAgain = "" }, enabled = valid, modifier = Modifier.fillMaxWidth().height(48.dp)) { Text(m("create")) }
+                    Button(onClick = { onComplete(pin, key); pin = ""; key = "" }, enabled = valid, modifier = Modifier.fillMaxWidth().height(48.dp)) { Text(m("create")) }
                 }
             }
         }
@@ -502,7 +498,21 @@ internal fun generateDesktopDataKey(length: Int = 16): String {
 internal fun parseDesktopDataKey(document: String): String? = Regex("(?m)^\\s*([A-Za-z0-9-]{8,39})\\s*$").findAll(document)
     .map { it.groupValues[1].trim().uppercase() }.firstOrNull { candidate -> candidate.replace("-", "").matches(Regex("[A-Z0-9]{8,32}")) }
 
-@Composable private fun SecretField(label: String, value: String, onChange: (String) -> Unit) = OutlinedTextField(value, onChange, Modifier.fillMaxWidth(), label = { Text(label) }, singleLine = true, visualTransformation = PasswordVisualTransformation())
+@Composable
+private fun SecretField(label: String, value: String, revealable: Boolean = false, onChange: (String) -> Unit) {
+    val language = LocalAppLanguage.current
+    var revealed by remember { mutableStateOf(false) }
+    OutlinedTextField(
+        value, onChange, Modifier.fillMaxWidth(), label = { Text(label) }, singleLine = true,
+        visualTransformation = if (revealed) VisualTransformation.None else PasswordVisualTransformation(),
+        trailingIcon = if (!revealable) null else ({
+            val describe = AndroidStringCatalog.text(language, if (revealed) "hide_password" else "show_password")
+            IconButton(onClick = { revealed = !revealed }) {
+                Icon(if (revealed) Icons.Filled.VisibilityOff else Icons.Filled.Visibility, contentDescription = describe)
+            }
+        }),
+    )
+}
 
 @Composable
 private fun UnlockScreen(
