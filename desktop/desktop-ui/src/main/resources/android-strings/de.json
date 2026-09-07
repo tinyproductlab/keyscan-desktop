@@ -2370,5 +2370,6 @@
     "desktop_unknown_version":  "Unbekannte Version",
     "desktop_not_connected_yet":  "Noch nicht verbunden",
     "desktop_unexpected_error":  "Etwas ist schiefgelaufen",
-    "desktop_list_separator":  ", "
+    "desktop_list_separator":  ", ",
+    "desktop_plugin_windows_only":  "Die Browser-Erweiterung verbindet sich derzeit nur mit der Windows-Desktop-App."
 }

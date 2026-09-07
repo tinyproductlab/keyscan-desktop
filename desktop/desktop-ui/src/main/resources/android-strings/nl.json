@@ -2370,5 +2370,6 @@
     "desktop_unknown_version":  "Onbekende versie",
     "desktop_not_connected_yet":  "Nog niet verbonden",
     "desktop_unexpected_error":  "Er ging iets mis",
-    "desktop_list_separator":  ", "
+    "desktop_list_separator":  ", ",
+    "desktop_plugin_windows_only":  "De browserextensie werkt voorlopig alleen samen met de Windows-desktopapp."
 }

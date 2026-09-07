@@ -2370,5 +2370,6 @@
     "desktop_unknown_version":  "未知版本",
     "desktop_not_connected_yet":  "尚未連線",
     "desktop_unexpected_error":  "操作未能完成",
-    "desktop_list_separator":  "、"
+    "desktop_list_separator":  "、",
+    "desktop_plugin_windows_only":  "瀏覽器擴充功能目前僅支援 Windows 桌面版。"
 }

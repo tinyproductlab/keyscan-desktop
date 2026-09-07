@@ -2370,5 +2370,6 @@
     "desktop_unknown_version":  "Versione sconosciuta",
     "desktop_not_connected_yet":  "Non ancora connesso",
     "desktop_unexpected_error":  "Qualcosa è andato storto",
-    "desktop_list_separator":  ", "
+    "desktop_list_separator":  ", ",
+    "desktop_plugin_windows_only":  "Per ora l'estensione del browser si collega solo all'app desktop per Windows."
 }

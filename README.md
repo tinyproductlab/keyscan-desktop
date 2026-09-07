@@ -69,7 +69,17 @@ node scripts/verify.mjs
 
 ## Checks
 
-Two audits run over this repository and both are meant to stay green:
+Three checks run over this repository and all are meant to stay green.
+
+```bash
+cd desktop && ./gradlew test
+```
+
+Unit tests for the vault, the backup format, the native-messaging protocol, and
+the localization rules. Run the whole suite, not a single test — one ordering bug
+here only showed up when the suite ran warm.
+
+The other two:
 
 ```powershell
 powershell -File desktop/tools/Audit-DesktopLocalization.ps1

@@ -2370,5 +2370,6 @@
     "desktop_unknown_version":  "Версия неизвестна",
     "desktop_not_connected_yet":  "Ещё не подключено",
     "desktop_unexpected_error":  "Что-то пошло не так",
-    "desktop_list_separator":  ", "
+    "desktop_list_separator":  ", ",
+    "desktop_plugin_windows_only":  "Пока расширение браузера подключается только к настольному приложению для Windows."
 }

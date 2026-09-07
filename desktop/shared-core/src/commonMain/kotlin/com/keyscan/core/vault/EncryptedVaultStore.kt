@@ -77,7 +77,13 @@ class EncryptedVaultStore(
         save(vault)
     }
 
-    @Synchronized fun listPasswordHistory(entryId: String): List<PasswordHistory> = load().passwordHistory.filter { it.entryItemId == entryId }.sortedByDescending { it.createdAt }
+    // Both lists are newest-first. createdAt/deletedAt are millisecond stamps, so two entries
+    // written in the same millisecond tie; a stable sort would then keep insertion order and put
+    // the older one first. Break the tie on insertion order, reversed, so newest still wins.
+    @Synchronized fun listPasswordHistory(entryId: String): List<PasswordHistory> = load().passwordHistory
+        .withIndex().filter { it.value.entryItemId == entryId }
+        .sortedWith(compareByDescending<IndexedValue<PasswordHistory>> { it.value.createdAt }.thenByDescending { it.index })
+        .map { it.value }
     @Synchronized fun restorePasswordHistory(historyId: String): Boolean {
         val vault = load(); val history = vault.passwordHistory.firstOrNull { it.historyId == historyId } ?: return false
         val index = vault.passwords.indexOfFirst { it.id == history.entryItemId }; if (index < 0) return false
@@ -137,7 +143,10 @@ class EncryptedVaultStore(
         val vault = load(); val removed = vault.attachments.removeAll { it.id == id }; if (removed) save(vault); return removed
     }
 
-    @Synchronized fun listTrash(): List<TrashEntry> = load().trash.sortedByDescending { it.deletedAt }
+    @Synchronized fun listTrash(): List<TrashEntry> = load().trash
+        .withIndex()
+        .sortedWith(compareByDescending<IndexedValue<TrashEntry>> { it.value.deletedAt }.thenByDescending { it.index })
+        .map { it.value }
     @Synchronized fun restoreTrash(id: String): Boolean {
         val vault = load(); val item = vault.trash.firstOrNull { it.id == id } ?: return false
         when (item.type) {

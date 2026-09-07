@@ -830,6 +830,10 @@ private fun AndroidHomePluginCard(browserPlugins: () -> List<BrowserPluginRecord
             val byBrowser = pairedPlugins.groupBy { it.browser.lowercase() }
             val expected = listOf("chrome" to "Chrome", "edge" to "Edge", "firefox" to "Firefox", "brave" to "Brave", "safari" to "Safari")
             Text(t("desktop_plugin_supported_browsers", expected.joinToString(t("desktop_list_separator")) { it.second }), color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 12.sp, maxLines = 1)
+            if (!DesktopPlatform.current().supportsWindowsNativeMessaging) {
+                Text(t("desktop_plugin_windows_only"), color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 12.sp)
+                return@Column
+            }
             val onlineCutoff = java.time.Instant.now().minusSeconds(90)
             fun BrowserPluginRecord.isOnline(): Boolean = lastSeenAt?.isAfter(onlineCutoff) == true
             val connected = expected.mapNotNull { (key, label) -> byBrowser[key]?.firstOrNull { it.isOnline() }?.let { label to it } } +
@@ -1317,7 +1321,9 @@ private fun SettingsPage(store: WebDavSettingsStore?, appSettings: AppSettings, 
             Column { Text(t("desktop_browser_plugins"), fontSize = 20.sp, fontWeight = FontWeight.SemiBold); Text(t("desktop_plugin_scope_note"), color = MaterialTheme.colorScheme.onSurfaceVariant) }
             OutlinedButton(onClick = { pairedPlugins = browserPlugins() }) { Text(t("share_refresh")) }
         }
-        if (pairedPlugins.isEmpty()) Text(t("desktop_plugin_none_authorized"), color = MaterialTheme.colorScheme.onSurfaceVariant)
+        if (!DesktopPlatform.current().supportsWindowsNativeMessaging) {
+            Text(t("desktop_plugin_windows_only"), color = MaterialTheme.colorScheme.onSurfaceVariant)
+        } else if (pairedPlugins.isEmpty()) Text(t("desktop_plugin_none_authorized"), color = MaterialTheme.colorScheme.onSurfaceVariant)
         pairedPlugins.forEach { plugin -> Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(14.dp)) {
             Row(Modifier.fillMaxWidth().padding(14.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {

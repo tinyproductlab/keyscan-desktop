@@ -2370,5 +2370,6 @@
     "desktop_unknown_version":  "バージョン不明",
     "desktop_not_connected_yet":  "未接続",
     "desktop_unexpected_error":  "処理を完了できませんでした",
-    "desktop_list_separator":  "、"
+    "desktop_list_separator":  "、",
+    "desktop_plugin_windows_only":  "ブラウザ拡張機能は現在 Windows デスクトップ版にのみ接続できます。"
 }

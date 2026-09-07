@@ -2460,5 +2460,6 @@
     "desktop_unknown_version":  "Unknown version",
     "desktop_not_connected_yet":  "Not connected yet",
     "desktop_unexpected_error":  "Something went wrong",
-    "desktop_list_separator":  ", "
+    "desktop_list_separator":  ", ",
+    "desktop_plugin_windows_only":  "The browser extension currently pairs with the Windows desktop app only."
 }

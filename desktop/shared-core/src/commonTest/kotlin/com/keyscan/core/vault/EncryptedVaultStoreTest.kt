@@ -73,6 +73,20 @@ class EncryptedVaultStoreTest {
         assertTrue(store.deletePasswordHistory(history.historyId))
     }
 
+    @Test fun rapidPasswordChangesStayNewestFirstInHistory() {
+        // Twenty edits in a row land inside the same millisecond, so every createdAt ties. A stable
+        // sort alone would then hand back the oldest entry first; history must still be newest-first.
+        val file = Files.createTempDirectory("keyscan-history-order-test").resolve("vault.ksdb")
+        val store = EncryptedVaultStore(file, provider())
+        val entry = PasswordEntry("p1", "Mail", "example.com", "alice", "secret-0")
+        store.savePassword(entry)
+        repeat(20) { index -> store.savePassword(entry.copy(password = "secret-${index + 1}")) }
+
+        val history = store.listPasswordHistory(entry.id)
+        assertEquals(20, history.size)
+        assertEquals(List(20) { "secret-${19 - it}" }, history.map { it.oldPassword })
+    }
+
     @Test fun deletedPasswordTotpAndVaultItemMoveToEncryptedTrashAndRestore() {
         val file = Files.createTempDirectory("keyscan-trash-test").resolve("vault.ksdb"); val store = EncryptedVaultStore(file, provider())
         val password = PasswordEntry("p", "Mail", "example.test", "alice", "secret")

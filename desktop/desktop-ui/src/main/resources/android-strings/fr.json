@@ -2370,5 +2370,6 @@
     "desktop_unknown_version":  "Version inconnue",
     "desktop_not_connected_yet":  "Pas encore connecté",
     "desktop_unexpected_error":  "Une erreur s'est produite",
-    "desktop_list_separator":  ", "
+    "desktop_list_separator":  ", ",
+    "desktop_plugin_windows_only":  "Pour l'instant, l'extension de navigateur ne se connecte qu'à l'application de bureau Windows."
 }

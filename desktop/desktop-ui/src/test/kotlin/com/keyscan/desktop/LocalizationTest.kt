@@ -16,10 +16,16 @@ class LocalizationTest {
     @Test fun `home tagline follows the specified language rule`() {
         listOf(AppLanguage.ENGLISH, AppLanguage.GERMAN, AppLanguage.SPANISH, AppLanguage.FRENCH, AppLanguage.ITALIAN, AppLanguage.DUTCH, AppLanguage.PORTUGUESE_BRAZIL, AppLanguage.RUSSIAN)
             .forEach { assertEquals("safe free", uiText(it).safeFree, it.name) }
-        assertEquals("安全 自由", uiText(AppLanguage.SIMPLIFIED_CHINESE).safeFree)
-        assertEquals("安全 自由", uiText(AppLanguage.TRADITIONAL_CHINESE).safeFree)
-        assertEquals("安全と自由", uiText(AppLanguage.JAPANESE).safeFree)
-        assertEquals("안전과 자유", uiText(AppLanguage.KOREAN).safeFree)
+        // "free" here is free of charge, which is what every Latin-script language says.
+        // The CJK translations once used the "liberty" sense instead; keep that out.
+        assertEquals("安全 免费", uiText(AppLanguage.SIMPLIFIED_CHINESE).safeFree)
+        assertEquals("安全 免費", uiText(AppLanguage.TRADITIONAL_CHINESE).safeFree)
+        assertEquals("安全 無料", uiText(AppLanguage.JAPANESE).safeFree)
+        assertEquals("안전 무료", uiText(AppLanguage.KOREAN).safeFree)
+        AppLanguage.entries.forEach { language ->
+            val tagline = uiText(language).safeFree
+            assertFalse("自由" in tagline || "자유" in tagline, "${language.name} tagline uses the liberty sense of free: $tagline")
+        }
     }
     @Test fun `system language distinguishes simplified and traditional Chinese`() {
         assertEquals(AppLanguage.SIMPLIFIED_CHINESE, resolvedLanguage(AppLanguage.SYSTEM, Locale.forLanguageTag("zh-CN")))
