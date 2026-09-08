@@ -13,6 +13,13 @@ the browser process exits.
   the request with the right browser, extension ID and version. Approving it issued a pairing
   token, and the desktop recorded the pairing in `%APPDATA%\KeyScan\browser-plugins.properties`
   with the token held in the DPAPI secret store rather than in that file.
+- The desktop pairing dialog itself was exercised: Edge loading the extension raised
+  **Allow browser extension to connect?** in KeyScan with the right browser, extension ID and
+  version, and pressing **Allow** issued the token and moved the home card to **Connected: Edge**.
+- The heartbeat was watched for three and a half minutes after pairing. `lastSeenAt` advances every
+  30 seconds, which keeps the card inside the desktop's 90-second liveness window. Before the
+  alarms fix below it stalled the moment the service worker went idle, and the card fell back to
+  **Connected: none** permanently.
 - Driving `KeyScanNativeHost.exe` directly over stdio framing confirmed the fail-closed paths:
   an unapproved `register` returns `PAIRING_DENIED` after the 60-second approval timeout, and a
   `status` call without a token returns `PAIRING_REQUIRED`.

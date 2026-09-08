@@ -111,9 +111,20 @@ async function heartbeat(): Promise<void> {
   if (response.error === "PAIRING_REQUIRED") await chrome.storage.local.remove(PAIRING_TOKEN_KEY);
 }
 
-chrome.runtime.onStartup?.addListener(() => { void registerBrowser(); });
-chrome.runtime.onInstalled?.addListener(() => { void registerBrowser(); });
-void registerBrowser();
+const HEARTBEAT_ALARM = "keyscan-heartbeat";
+
+/** An MV3 service worker is terminated when it goes idle, taking any setInterval with it. Only an
+ *  alarm wakes the worker back up, so the desktop keeps seeing this browser as connected. The
+ *  interval stays as a same-session fallback for a browser without the alarms API. */
+function scheduleHeartbeat(): void {
+  void registerBrowser();
+  chrome.alarms?.create(HEARTBEAT_ALARM, { periodInMinutes: 0.5 });
+}
+
+chrome.alarms?.onAlarm.addListener((alarm) => { if (alarm.name === HEARTBEAT_ALARM) void heartbeat(); });
+chrome.runtime.onStartup?.addListener(scheduleHeartbeat);
+chrome.runtime.onInstalled?.addListener(scheduleHeartbeat);
+scheduleHeartbeat();
 if (typeof globalThis.setInterval === "function") globalThis.setInterval(() => { void heartbeat(); }, 30_000);
 
 function canInjectContentScript(url: string | undefined): boolean {
