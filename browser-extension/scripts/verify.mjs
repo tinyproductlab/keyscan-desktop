@@ -31,9 +31,9 @@ for (const target of targets) {
   }
   if (target !== "firefox") {
     assert(permissions.includes("scripting") && permissions.includes("tabs"), target + ": dynamic content-script reinjection requires scripting and tabs permissions");
-    assert(JSON.stringify(manifest.host_permissions) === JSON.stringify(["https://*/*", "http://*/*"]), target + ": host permissions must match supported HTTPS and loopback HTTP origins");
+    assert(JSON.stringify(manifest.host_permissions) === JSON.stringify(["https://*/*", "http://localhost/*", "http://127.0.0.1/*"]), target + ": host permissions must match supported HTTPS and loopback HTTP origins");
   }
-  assert(JSON.stringify(manifest.content_scripts?.[0]?.matches) === JSON.stringify(["https://*/*", "http://*/*"]), target + ": content script must match HTTPS and loopback HTTP pages");
+  assert(JSON.stringify(manifest.content_scripts?.[0]?.matches) === JSON.stringify(["https://*/*", "http://localhost/*", "http://127.0.0.1/*"]), target + ": content script must match HTTPS and loopback HTTP pages");
   if (target === "firefox") {
     const gecko = manifest.browser_specific_settings?.gecko;
     assert(gecko?.strict_min_version === "140.0", "firefox: built-in data consent requires Firefox 140+");
@@ -106,6 +106,19 @@ for (const target of targets) {
   storedPairingToken = undefined;
   const matching = await new Promise((resolve) => backgroundListener({ id: "matching", type: "findCredentials", origin: "https://current.example" }, sender, resolve));
   assert(matching?.ok === true && nativeCalls === registrationCalls + 3 && lastNativeRequest?.token === storedPairingToken, target + ": first lookup did not pair and resume with its token");
+}
+
+// Chrome Web Store will not publish an item whose manifest has no 128px icon, and without
+// action.default_icon the toolbar falls back to a generic puzzle piece.
+for (const target of targets) {
+  const manifest = JSON.parse(await readFile(path.join(root, "dist", target, "manifest.json"), "utf8"));
+  for (const [label, icons] of [["icons", manifest.icons], ["action.default_icon", manifest.action?.default_icon]]) {
+    assert(icons && icons["128"], target + ": " + label + " is missing a 128px entry");
+    for (const [size, file] of Object.entries(icons)) {
+      const stats = await stat(path.join(root, "dist", target, file)).catch(() => null);
+      assert(stats?.isFile(), target + ": " + label + " " + size + " points at a missing file: " + file);
+    }
+  }
 }
 
 // The popup ships its own inline string table, so _locales cannot catch a language that

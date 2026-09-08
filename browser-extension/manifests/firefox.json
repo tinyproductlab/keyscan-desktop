@@ -3,18 +3,60 @@
   "name": "__MSG_appName__",
   "version": "0.1.64",
   "description": "__MSG_appDescription__",
-  "permissions": ["activeTab", "storage", "alarms",
-    "nativeMessaging"],
-  "background": { "scripts": ["background.js"] },
-  "action": { "default_popup": "popup.html", "default_title": "KeyScan" },
-  "content_scripts": [{ "matches": ["https://*/*", "http://*/*"], "js": ["content.js"], "run_at": "document_idle" }],
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "alarms",
+    "nativeMessaging"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "KeyScan",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*/*",
+        "http://localhost/*",
+        "http://127.0.0.1/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
   "browser_specific_settings": {
     "gecko": {
       "id": "keyscan@keyscan.app",
       "strict_min_version": "140.0",
-      "data_collection_permissions": { "required": ["authenticationInfo", "websiteActivity"] }
+      "data_collection_permissions": {
+        "required": [
+          "authenticationInfo",
+          "websiteActivity"
+        ]
+      }
     },
-    "gecko_android": { "strict_min_version": "142.0" }
+    "gecko_android": {
+      "strict_min_version": "142.0"
+    }
   },
   "default_locale": "en"
 }

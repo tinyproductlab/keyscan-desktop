@@ -131,7 +131,10 @@ function canInjectContentScript(url: string | undefined): boolean {
   if (!url) return false;
   try {
     const parsed = new URL(url);
-    return parsed.protocol === "https:" || parsed.protocol === "http:";
+    if (parsed.protocol === "https:") return true;
+    // Plain HTTP is not fillable: originForNativeBridge drops every non-loopback HTTP origin, and
+    // the manifest no longer asks for those hosts, so injecting there could only fail.
+    return parsed.protocol === "http:" && (parsed.hostname === "127.0.0.1" || parsed.hostname === "localhost");
   } catch {
     return false;
   }
