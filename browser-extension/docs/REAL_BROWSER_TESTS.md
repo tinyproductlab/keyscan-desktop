@@ -30,8 +30,11 @@ the browser process exits.
   Firefox Release will reject it; temporary runtime loading uses `about:debugging` and production
   installation requires Mozilla signing.
 
-Development IDs are path-derived and are not release store IDs. They must not be copied into the
-production native-host allow-list.
+The Chromium manifests pin a `key`, so the ID is derived from that key rather than from the load
+path: Chrome, Edge and Brave all report `ccehabgiddlgfkhgkmpdehddiekngjel`, and it is the same on
+any machine. That makes this test reproducible, but it is still not a release store ID — a new
+store item gets its ID from the store, and only that one belongs in the production native-host
+allow-list.
 
 ## Reproduce the native-messaging round trip
 
@@ -54,8 +57,11 @@ production native-host allow-list.
 Do not double-click the locally built `.xpi` in Firefox Release. Its rejection as unsigned is
 expected. Mozilla must sign the uploaded release XPI before end users can install it normally.
 
-Development IDs are path-derived and are not release store IDs. They must not be copied into the
-production native-host allow-list.
+The Chromium manifests pin a `key`, so the ID is derived from that key rather than from the load
+path: Chrome, Edge and Brave all report `ccehabgiddlgfkhgkmpdehddiekngjel`, and it is the same on
+any machine. That makes this test reproducible, but it is still not a release store ID — a new
+store item gets its ID from the store, and only that one belongs in the production native-host
+allow-list.
 
 ## Reproduce Chromium isolation test
 
